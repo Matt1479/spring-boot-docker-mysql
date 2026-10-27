@@ -1,5 +1,7 @@
 services:
   server:
+    depends_on:
+      - mysql
     env_file:
       - .env
     build:
@@ -13,8 +15,9 @@ services:
           action: rebuild
         - path: ./src
           target: /app/src
-          # use sync if you're using Spring Boot DevTools
-          action: rebuild
+          action: sync+exec
+          exec:
+            command: ./mvnw compile
   mysql:
     image: 'mysql:latest'
     environment:
