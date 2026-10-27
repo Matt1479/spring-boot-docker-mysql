@@ -2,7 +2,7 @@
 
 This project demonstrates how to containerize a Spring Boot application with a MySQL database using Docker Compose. It provides a REST API for creating, retrieving, updating, and deleting users.
 
-Docker Compose Watch is configured to rebuild the `server` service when files in `src/` change.
+Docker Compose Watch is configured to sync changes in `src/` to the `server` service, recompile the application, and restart it using Spring Boot DevTools.
 
 ## Getting Started
 
@@ -51,7 +51,7 @@ For `POST /api/users` and `PUT /api/users/{id}`:
 
 ## Development
 
-Check out the `dev` branch for the development setup using Spring Boot DevTools and Docker Compose Watch.
+This project uses Spring Boot DevTools and Docker Compose Watch to streamline development. Source changes are synced into the container, compiled, and picked up by DevTools for restart.
 
 ## Tech Stack
 
@@ -60,5 +60,6 @@ Check out the `dev` branch for the development setup using Spring Boot DevTools 
     - Spring Web
     - Spring Data JPA
     - MySQL Driver
-    - Docker Compose Support
+    - Docker Compose Support (optional; Docker Compose is managed externally)
     - Testcontainers
+    - Spring Boot DevTools
