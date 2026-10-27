@@ -1,0 +1,27 @@
+services:
+  server:
+    env_file:
+      - .env
+    build:
+      context: .
+    ports:
+      # [HOST_PORT] : [CONTAINER_PORT]
+      - '8080:8080'
+    develop:
+      watch:
+        - path: ./pom.xml
+          action: rebuild
+        - path: ./src
+          target: /app/src
+          # use sync if you're using Spring Boot DevTools
+          action: rebuild
+  mysql:
+    image: 'mysql:latest'
+    environment:
+      - 'MYSQL_DATABASE=${MYSQL_DATABASE:-mydatabase}'
+      - 'MYSQL_PASSWORD=${MYSQL_PASSWORD:-secret}'
+      - 'MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-verysecret}'
+      - 'MYSQL_USER=${MYSQL_USER:-myuser}'
+    ports:
+      # [HOST_PORT] : [CONTAINER_PORT]
+      - '3306:3306'
