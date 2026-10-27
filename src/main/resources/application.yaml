@@ -7,6 +7,10 @@ spring:
     username: ${MYSQL_USER}
     password: ${MYSQL_PASSWORD}
 
+  docker:
+    compose:
+      enabled: false
+
   jpa:
     hibernate:
       # Create (or update) the database on startup if needed
